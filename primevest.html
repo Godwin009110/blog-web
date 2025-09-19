@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime-vest - AI Crypto Trading Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1e293b 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #e99a0c;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Strategies Section */
+        .strategies {
+            background-color: white;
+        }
+        
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .strategy-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .strategy-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .strategy-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .strategy-body {
+            padding: 20px;
+        }
+        
+        .strategy-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .strategy-info div {
+            text-align: center;
+        }
+        
+        .strategy-info h4 {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .profit {
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        /* Plans Section */
+        .plans {
+            background-color: #f8fafc;
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .plan-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .plan-card.popular {
+            border: 2px solid var(--accent);
+        }
+        
+        .plan-card.popular::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            font-weight: 600;
+        }
+        
+        .plan-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .plan-body {
+            padding: 20px;
+        }
+        
+        .plan-feature {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .plan-price {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 20px 0;
+        }
+        
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .about-features {
+            margin-top: 30px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Roadmap Section */
+        .roadmap {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1e293b 100%);
+            color: white;
+        }
+        
+        .roadmap .section-title h2 {
+            color: white;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            color: var(--secondary);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -13px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -13px;
+        }
+        
+        /* CEO Section */
+        .ceo-section {
+            background-color: white;
+        }
+        
+        .ceo-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .ceo-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ceo-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .ceo-info h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .ceo-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        /* Referral Program */
+        .referral-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .referral-table th, .referral-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .referral-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .referral-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .ceo-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .timeline-item:nth-child(odd)::after {
+                right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Prime<span>Vest</span>.com</a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul id="menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#strategies">Strategies</a></li>
+                    <li><a href="#plans">Investment Plans</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#ceo">Our CEO</a></li>
+                    <li><a href="#referral">Referral Program</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>HARNESSING AI FOR CRYPTO TRADING EXCELLENCE</h1>
+            <p>Achieving financial freedom and independence is a common goal for many people. Our systems can be a stepping stone toward achieving this goal by generating consistent income and building wealth over time.</p>
+            <a href="#plans" class="btn">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Strategies Section -->
+    <section class="strategies" id="strategies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our A.I Trading Strategies</h2>
+                <p>Discover our proven trading strategies powered by advanced artificial intelligence</p>
+            </div>
+            
+            <div class="strategies-grid">
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <h3>Crypto Momentum Grid Strategy</h3>
+                    </div>
+                    <div class="strategy-body">
+                        <div class="strategy-info">
+                            <div>
+                                <h4>Platform</h4>
+                                <p>BingX</p>
+                            </div>
+                            <div>
+                                <h4>Last Month</h4>
+                                <p class="profit">+4.792%</p>
+                            </div>
+                            <div>
+                                <h4>Risk Level</h4>
+                                <p>Low</p>
+                            </div>
+                        </div>
+                        <p>Our momentum strategy capitalizes on market trends using AI-powered grid trading algorithms.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <h3>Satoshi's Secret Success DCA Strategy</h3>
+                    </div>
+                    <div class="strategy-body">
+                        <div class="strategy-info">
+                            <div>
+                                <h4>Platform</h4>
+                                <p>KuKoin</p>
+                            </div>
+                            <div>
+                                <h4>Last Month</h4>
+                                <p class="profit">+6.792%</p>
+                            </div>
+                            <div>
+                                <h4>Risk Level</h4>
+                                <p>Moderate</p>
+                            </div>
+                        </div>
+                        <p>Dollar-cost averaging strategy enhanced with AI to optimize entry points and maximize returns.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; font-style: italic; color: #64748b;">
+                <p>Computed using historical performances of ChatGPT Crypto Tactics over the past six months. Past performance is not indicative of future performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="plans" id="plans">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Investment Plans</h2>
+                <p>Choose from our range of investment plans designed to suit different investment goals</p>
+            </div>
+            
+            <h3 style="text-align: center; margin-bottom: 30px; color: var(--secondary);">Monthly Plans</h3>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Starter Plan</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-feature">
+                            <span>Profit Accruals:</span>
+                            <strong>3% DAILY</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Min Deposit:</span>
+                            <strong>$100</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Max Deposit:</span>
+                            <strong>$3,999</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Duration:</span>
+                            <strong>5 Days</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Ref. Commission:</span>
+                            <strong>10%</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Deposit Return:</span>
+                            <strong>Yes</strong>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">INVEST NOW</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card popular">
+                    <div class="plan-header">
+                        <h3>Advanced Plan</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-feature">
+                            <span>Profit Accruals:</span>
+                            <strong>4% DAILY</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Min Deposit:</span>
+                            <strong>$4,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Max Deposit:</span>
+                            <strong>$9,999</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Duration:</span>
+                            <strong>5 Days</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Ref. Commission:</span>
+                            <strong>10%</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Deposit Return:</span>
+                            <strong>Yes</strong>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">INVEST NOW</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Ultimate Plan</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-feature">
+                            <span>Profit Accruals:</span>
+                            <strong>5% DAILY</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Min Deposit:</span>
+                            <strong>$10,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Max Deposit:</span>
+                            <strong>$19,999</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Duration:</span>
+                            <strong>4 Days</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Ref. Commission:</span>
+                            <strong>10%</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Deposit Return:</span>
+                            <strong>Yes</strong>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">INVEST NOW</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>ShareHolder Plan</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-feature">
+                            <span>Profit Accruals:</span>
+                            <strong>25% DAILY</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Min Deposit:</span>
+                            <strong>$20,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Max Deposit:</span>
+                            <strong>$1,000,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Duration:</span>
+                            <strong>2 Days</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Ref. Commission:</span>
+                            <strong>10%</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Deposit Return:</span>
+                            <strong>Yes</strong>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">INVEST NOW</a>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin: 60px 0 30px; color: var(--secondary);">Long-Term Plans</h3>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>M Plan 1</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-feature">
+                            <span>Profit Accruals:</span>
+                            <strong>3% DAILY</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Min Deposit:</span>
+                            <strong>$1,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Max Deposit:</span>
+                            <strong>$10,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Duration:</span>
+                            <strong>30 Days</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Return on Investment:</span>
+                            <strong>90%</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Deposit Principal:</span>
+                            <strong>Returned</strong>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">INVEST NOW</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>M Plan 2</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-feature">
+                            <span>Profit Accruals:</span>
+                            <strong>6% DAILY</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Min Deposit:</span>
+                            <strong>$10,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Max Deposit:</span>
+                            <strong>$20,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Duration:</span>
+                            <strong>60 Days</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Return on Investment:</span>
+                            <strong>360%</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Deposit Principal:</span>
+                            <strong>Returned</strong>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">INVEST NOW</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>M Plan 3</h3>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-feature">
+                            <span>Profit Accruals:</span>
+                            <strong>9% DAILY</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Min Deposit:</span>
+                            <strong>$20,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Max Deposit:</span>
+                            <strong>$50,000</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Duration:</span>
+                            <strong>90 Days</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Return on Investment:</span>
+                            <strong>810%</strong>
+                        </div>
+                        <div class="plan-feature">
+                            <span>Deposit Principal:</span>
+                            <strong>Returned</strong>
+                        </div>
+                        <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 20px;">INVEST NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>What is unitytopcore.com?</h2>
+                    <p>unitytopcore.com is more than just a trading platform, it's a comprehensive solution that leverages advanced algorithms to analyze market patterns.</p>
+                    <p>These algorithms are the product of state-of-the-art AI technology, ensuring that they are always up-to-date with the latest market trends. This means that unitytopcore.com provides users with insights that can guide their trading decisions, giving them a significant advantage in the volatile world of cryptocurrency trading.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h3>Market Analysis</h3>
+                                <p>Advanced AI algorithms analyze market patterns and trends</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Risk Mitigation</h3>
+                                <p>Smart risk management strategies to protect your investments</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <h3>Profit Generation</h3>
+                                <p>Consistent returns through AI-optimized trading strategies</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://placehold.co/600x400/2563eb/ffffff?text=AI+Trading+Platform" alt="AI Trading Platform" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap" id="roadmap">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Roadmap</h2>
+                <p>Opening the Way to a New Stage of Cryptocurrency Arbitration</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">April 25, 2024</div>
+                        <h3>Phase 1: unitytopcore.com AI Launch</h3>
+                        <p>Initial launch of our AI trading platform</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 25, 2024</div>
+                        <h3>Phase 2: First Software Update</h3>
+                        <p>Major update with enhanced algorithms</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 25, 2024</div>
+                        <h3>Phase 3: First App Version Launch</h3>
+                        <p>Mobile application release for iOS and Android</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">July 1, 2024</div>
+                        <h3>Phase 4: Trading Signal Chatbot Launch</h3>
+                        <p>AI-powered chatbot for trading signals</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">September 7, 2024</div>
+                        <h3>Phase 4: unitytopcore.com Token Launch</h3>
+                        <p>Launch of our native utility token</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">October 1, 2024</div>
+                        <h3>Phase 5: First Conference in Dubai</h3>
+                        <p>Our first international conference</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Coming Soon</div>
+                        <h3>Phase 6: Rewards Program for Client Launch</h3>
+                        <p>Loyalty and rewards program for our clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO Section -->
+    <section class="ceo-section" id="ceo">
+        <div class="container">
+            <div class="ceo-content">
+                <div class="ceo-image">
+                    <img src="https://placehold.co/400x500/2563eb/ffffff?text=Dragan+Milanovic" alt="Dragan Milanovic">
+                </div>
+                
+                <div class="ceo-info">
+                    <h2>DRAGAN MILANOVIC</h2>
+                    <div class="ceo-title">CEO | Experience: 28 years</div>
+                    <p>As the CEO of unitytopcore.com, Dragan Milanovic provides visionary leadership and strategic direction to drive the company's growth and success. With a background in finance, artificial intelligence, and technology entrepreneurship, Dragan brings a wealth of experience and insight to his role.</p>
+                    <p>He is deeply committed to leveraging advanced technologies and data-driven strategies to empower traders and investors in the cryptocurrency market.</p>
+                    <p>UTC is a cutting-edge Crypto Arbitrage Trading System designed to help you generate consistent daily income.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Program Section -->
+    <section class="referral" id="referral">
+        <div class="container">
+            <div class="section-title">
+                <h2>Referral Program</h2>
+                <p>Earn commissions by referring new clients to our platform</p>
+            </div>
+            
+            <table class="referral-table">
+                <thead>
+                    <tr>
+                        <th>Tier</th>
+                        <th>Turnover Requirement</th>
+                        <th>Commission Level 1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Starter</td>
+                        <td>None</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Bronze</td>
+                        <td>$5,000</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Silver</td>
+                        <td>$10,000</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Gold</td>
+                        <td>$20,000</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Platinum</td>
+                        <td>$50,000</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Diamond</td>
+                        <td>$100,000</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Elite</td>
+                        <td>$250,000</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Royal</td>
+                        <td>$500,000</td>
+                        <td>5%</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-accent">Join Our Referral Program</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>unitytopcore.com is a cutting-edge Crypto Arbitrage Trading System designed to help you generate consistent daily income.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#strategies">Strategies</a></li>
+                        <li><a href="#plans">Investment Plans</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#roadmap">Roadmap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">AML Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@unitytopcore.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Dubai, UAE</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 unitytopcore.com. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('menu').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
